@@ -10,7 +10,32 @@
 	<script>
 		function secondHighest(arr) {
 			//Write your code here
+			if (arr.length < 2) {
+				return -Infinity;
+			}
 			
+			// Convert all array elements to numbers (since inputs from prompt are strings)
+			arr = arr.map(Number);
+			
+			let max = -Infinity;
+			let secondMax = -Infinity;
+			
+			// Iterate over the array to find max and second max
+			for (let num of arr) {
+				if (num > max) {
+					secondMax = max;
+					max = num;
+				} else if (num > secondMax && num < max) {
+					secondMax = num;
+				}
+			}
+			
+			// If secondMax is still -Infinity, that means there's no second highest number
+			if (secondMax === -Infinity) {
+				return -Infinity;
+			}
+			
+			return secondMax;			
 		}
 
 		function Main() {
